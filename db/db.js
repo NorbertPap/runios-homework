@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
-const Photo = require('./db/schema/photos');
+
+const photoSchema = new mongoose.Schema({
+    imageUrl: String,
+    publishedDate: Date,
+    tags: [String]
+});
+const photoModel = mongoose.model('Photo', photoSchema);
+
 
 mongoose.connect(process.env.MONGO_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;

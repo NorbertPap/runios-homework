@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('dotenv').config();
 const db = require('./db/db');
-const Photo = require('./db/schema/photos');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
