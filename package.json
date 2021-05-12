@@ -11,6 +11,7 @@
     "debug": "~2.6.9",
     "dotenv": "^9.0.2",
     "express": "~4.16.1",
+    "flickr-sdk": "^3.10.0",
     "mongoose": "^5.12.8",
     "morgan": "~1.9.1"
   },
