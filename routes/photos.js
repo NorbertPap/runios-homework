@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const getPhotos = require('../db/photos');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', async function(req, res, next) {
+  const photos = await getPhotos(10, 1);
+  res.json(photos);
 });
 
 module.exports = router;

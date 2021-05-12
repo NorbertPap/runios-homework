@@ -21,6 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/photos', usersRouter);
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log('Server listening on port 3000')
+});
 
 module.exports = app;
