@@ -13,8 +13,9 @@
     "ejs": "^3.1.6",
     "express": "~4.16.1",
     "flickr-sdk": "^3.10.0",
-    "mongoose": "^5.12.8",
-    "morgan": "~1.9.1"
+    "knex": "^0.95.5",
+    "morgan": "~1.9.1",
+    "pg": "^8.6.0"
   },
   "devDependencies": {
     "jest": "^26.6.3",
