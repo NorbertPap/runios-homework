@@ -7,8 +7,8 @@ const getMostPopularTags = require('../db/photos').getMostPopularTags;
 router.get('/', async function(req, res, next) {
   const page = req.query.page;
   const tag = req.query.tag;
-  const mostPopularTags = await getMostPopularTags();
   const photos = await getPhotos(10, page, tag);
+  const mostPopularTags = await getMostPopularTags();
   res.render('index', { photos: photos, mostPopularTags: mostPopularTags });
 });
 
