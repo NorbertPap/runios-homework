@@ -9,7 +9,6 @@ router.get('/', async function(req, res, next) {
 });
 
 router.delete('/:id', async (req, res) => {
-    console.log(req.params);
     await deletePhotoById(req.params.id);
     res.send()
 });

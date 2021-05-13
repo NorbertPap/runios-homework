@@ -58,7 +58,7 @@
             <li>
                 <a href="<%=photo.url%>"><%=photo.url%></a>
                 <div><%=photo.published%></div>
-                <button onclick="deletePhoto('<%=photo._id%>');">Delete</button><br><br>
+                <button onclick="deletePhoto('<%=photo.id%>');">Delete</button><br><br>
             </li>
         <% }); %>
     </ul>
