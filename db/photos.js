@@ -2,11 +2,25 @@ const knex = require('./db');
 
 async function getPhotos(count, page, tag) {
     try {
-        return await knex
-            .select('*')
-            .from('photos')
-            .limit(count)
-            .offset((page - 1) * count)
+        if(!tag) {
+            return await knex
+                .select('*')
+                .from('photos')
+                .limit(count)
+                .offset((page - 1) * count)
+        } else {
+            return await knex
+                .select('*')
+                .from('photos')
+                .whereIn('id', function () {
+                    this
+                        .distinct('photo_id')
+                        .from('photo_tags')
+                        .where('tag_id', tag)
+                })
+                .limit(count)
+                .offset((page - 1) * count)
+        }
     } catch (e) {
         console.error(e)
     }
