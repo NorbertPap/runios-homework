@@ -1,8 +1,8 @@
 const Photo = require('./model/photo');
 
-async function getPhotos(count, page) {
+async function getPhotos(count, page, tag) {
     try {
-        return await Photo.find().limit(count).skip((page-1)*count).exec()
+        return await Photo.find(tag && {tags: { $all: [tag] }}).limit(count).skip((page-1)*count).exec()
     } catch (e) {
         console.error("Something went wrong while trying to access the photos: " + e);
     }
