@@ -45,7 +45,23 @@ async function deletePhotoById(id) {
     }
 }
 
+async function getMostPopularTags() {
+    try {
+        return await knex
+            .select('tags.id', 'name', knex.raw('COUNT(photo_id)'))
+            .from('tags')
+            .leftJoin('photo_tags', 'tags.id', 'photo_tags.tag_id')
+            .groupBy('tags.name', 'tags.id')
+            .count('photo_tags.tag_id')
+            .limit(10)
+            .orderByRaw('COUNT(photo_id) DESC');
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 module.exports = {
     getPhotos: getPhotos,
-    deletePhotoById: deletePhotoById
+    deletePhotoById: deletePhotoById,
+    getMostPopularTags: getMostPopularTags
 };
