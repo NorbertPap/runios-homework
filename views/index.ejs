@@ -1,12 +1,32 @@
-<!DOCTYP html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cat photos</title>
+    <script>
+        function deletePhoto(id) {
+            console.log(JSON.stringify({
+                id: id
+            }))
+            fetch(`/photos/${id}`, {
+                method: 'DELETE'
+            })
+                .then(() => location.reload())
+                .catch(error => console.error('Error: ', error))
+        }
+    </script>
 </head>
 <body>
-    This is where the photos will be
+    <ul>
+        <% photos.forEach(function(photo) { %>
+            <li>
+                <a href="<%=photo.url%>"><%=photo.url%></a>
+                <div><%=photo.published%></div>
+                <button onclick="deletePhoto('<%=photo._id%>');">Delete</button><br><br>
+            </li>
+        <% }); %>
+    </ul>
 </body>
 </html>
