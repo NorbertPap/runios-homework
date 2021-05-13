@@ -13,8 +13,42 @@
             fetch(`/photos/${id}`, {
                 method: 'DELETE'
             })
-                .then(() => location.reload())
+                .then(() => window.location.reload())
                 .catch(error => console.error('Error: ', error))
+        }
+
+        function goToPage(previousOrNext) {
+            const currentPage = Number.parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
+            const newPage = previousOrNext === 'next' ? currentPage + 1 : currentPage - 1;
+
+            if(newPage < 1) return;
+
+            const currentLocation = window.location.toString();
+            console.log(currentLocation);
+            window.location = updateURLParameter(currentLocation, 'page', newPage);
+        }
+
+        /**
+         * http://stackoverflow.com/a/10997390/11236
+         */
+        function updateURLParameter(url, param, paramVal){
+            var newAdditionalURL = "";
+            var tempArray = url.split("?");
+            var baseURL = tempArray[0];
+            var additionalURL = tempArray[1];
+            var temp = "";
+            if (additionalURL) {
+                tempArray = additionalURL.split("&");
+                for (var i=0; i<tempArray.length; i++){
+                    if(tempArray[i].split('=')[0] != param){
+                        newAdditionalURL += temp + tempArray[i];
+                        temp = "&";
+                    }
+                }
+            }
+
+            var rows_txt = temp + "" + param + "=" + paramVal;
+            return baseURL + "?" + newAdditionalURL + rows_txt;
         }
     </script>
 </head>
@@ -28,5 +62,8 @@
             </li>
         <% }); %>
     </ul>
+
+    <button onclick="goToPage('previous')">Previous</button> <button onclick="goToPage('next')">Next</button>
+
 </body>
 </html>

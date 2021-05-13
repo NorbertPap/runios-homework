@@ -6,7 +6,6 @@ const getPhotos = require('../db/photos').getPhotos;
 router.get('/', async function(req, res, next) {
   const page = req.query.page;
   const photos = await getPhotos(10, page);
-  console.log(photos);
   res.render('index', { photos: photos });
 });
 
