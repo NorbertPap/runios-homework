@@ -53,6 +53,8 @@ async function fillWithData() {
     const catPhotos = await getCatPhotos(500);
     console.log(catPhotos);
 
+    // inserting the photo and tag data, and getting their ids from the database to be able to connect photos and tags
+    // in a many-to-many relationship implementing table
     const photosMap = await insertPhotosAndGetMap(catPhotos);
     const tagMap = await insertTagsAndGetMap(catPhotos);
     await insertPhotoTags(catPhotos, photosMap, tagMap);
