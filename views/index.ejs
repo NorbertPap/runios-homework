@@ -28,6 +28,10 @@
             window.location = updateURLParameter(currentLocation, 'page', newPage);
         }
 
+        function goToTags(tagId) {
+            window.location = updateURLParameter(window.location.toString(), 'tag', tagId);
+        }
+
         /**
          * http://stackoverflow.com/a/10997390/11236
          */
@@ -53,6 +57,15 @@
     </script>
 </head>
 <body>
+    <ul>
+        <% mostPopularTags.forEach(function(tag) { %>
+        <li>
+            <div><%=tag.name%>: <%=tag.count%></div>
+            <button onclick="goToTags('<%=tag.id%>');">Filter</button><br><br>
+        </li>
+        <% }); %>
+    </ul>
+
     <ul>
         <% photos.forEach(function(photo) { %>
             <li>
